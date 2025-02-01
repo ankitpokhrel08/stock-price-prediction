@@ -8,3 +8,4 @@ tensorflow
 ipykernel
 keras
 scikeras
+plotly
