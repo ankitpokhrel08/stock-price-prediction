@@ -6,6 +6,7 @@ This project aims to predict stock prices using machine learning algorithms. The
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Running the Streamlit App](#running-the-streamlit-app)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -32,13 +33,18 @@ To get started with the project, follow these steps:
 To use the project, follow these steps:
 
 1. Prepare your dataset and place it in the `data` directory.
-2. Run the training script:
+2. Run the analysis notebook:
     ```sh
-    python train.py
+    jupyter notebook analysis.ipynb
     ```
-3. Use the trained model to make predictions:
+
+## Running the Streamlit App
+To run the Streamlit app, follow these steps:
+
+1. Ensure you have Streamlit installed (it is included in the requirements).
+2. Run the Streamlit app:
     ```sh
-    python predict.py --input data/input.csv --output data/output.csv
+    streamlit run app.py
     ```
 
 ## Contributing
@@ -47,4 +53,4 @@ Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTIN
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-![Screenshot](screenshot.png)
+![Screenshot](./screenshots/finaloutput.png)
