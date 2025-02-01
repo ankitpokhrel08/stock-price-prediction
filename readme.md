@@ -48,9 +48,9 @@ To run the Streamlit app, follow these steps:
     ```
 
 ## Contributing
-Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) before submitting a pull request.
+Contributions are welcome! 
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. 
 
 ![Screenshot](./screenshots/finaloutput.png)
