@@ -10,17 +10,15 @@ from tensorflow.keras import layers
 
 # Function to process the data and prepare for prediction
 def preprocess_data(df):
-    #Scroll bar to select company name and then assign that company name to the variable 'Company'
+    # Scroll bar to select company name and then assign that company name to the variable 'Company'
     company = st.selectbox("Select Company", df['Company'].unique())
     df = df[df['Company'] == company]
-
 
     # Use only the 'Close' column for predictions
     df = df[['Date', 'Close']]
     
-
     df['Date'] = df['Date'].apply(str_to_datetime)
-    #sort the date by ascending order
+    # Sort the date by ascending order
     df = df.sort_values('Date')
     df.index = df.pop('Date')
     # Wrap data table in expander
@@ -276,13 +274,15 @@ def final_prediction(df, future_dates, future_prices):
     })
     st.table(pred_df)
 
-   
-
 # Streamlit app UI
 st.title('Stock Price Prediction App')
 
 # Upload CSV file
 uploaded_file = st.file_uploader("Choose a CSV file with 'Date' and 'Close' columns", type='csv')
+
+# Button to load pre-existing data
+if st.button("Use Random Data"):
+    uploaded_file = "data/stocks.csv"
 
 if uploaded_file is not None:
     # Load the CSV file into a DataFrame
@@ -293,20 +293,20 @@ if uploaded_file is not None:
 
     # Process the data
     df_processed = preprocess_data(df)
-    #Ask user to select the date range for prediction
+    # Ask user to select the date range for prediction
     st.subheader("Select Date Range for Prediction. Format: YYYY-MM-DD")
-    #finding the latest date and storing in variable 'latest_date'
+    # Finding the latest date and storing in variable 'latest_date'
     latest_date = df_processed.index[-1]
-    #finding the oneyear before date from the latest date
+    # Finding the one year before date from the latest date
     one_year_before = latest_date - timedelta(days=365)
     start_date = st.date_input("Start Date", one_year_before)
     end_date = st.date_input("End Date", latest_date)
 
-    windowed_df = df_to_windowed_df(df_processed, start_date,end_date, n=3)
+    windowed_df = df_to_windowed_df(df_processed, start_date, end_date, n=3)
     dates, X, y = windowed_df_to_date_X_y(windowed_df)
     dates_train, X_train, y_train, dates_val, X_val, y_val, dates_test, X_test, y_test = splitting(dates, X, y)
     model = create_lstm_model()
-    model = train_model(model, X_train, y_train, X_val, y_val)  # Add this line
+    model = train_model(model, X_train, y_train, X_val, y_val)
     plottingeverything(model, X_train, y_train, X_val, y_val, X_test, y_test)
     future_prices = futureprediction(df_processed)
     future_dates = futuredates(df_processed)
