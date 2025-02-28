@@ -171,12 +171,12 @@ def train_model(model, X_train, y_train, X_val, y_val):
     progress_bar = st.progress(0)
     status_text = st.empty()
     
-    # Get user prediction while model trains
-    st.subheader("While the model is training...")
-    user_prediction = st.radio(
-        "Based on the historical data shown above, do you think the stock price will go up or down?",
-        options=['Up ↑', 'Down ↓']
-    )
+    # # Get user prediction while model trains
+    # st.subheader("While the model is training...")
+    # user_prediction = st.radio(
+    #     "Based on the historical data shown above, do you think the stock price will go up or down?",
+    #     options=['Up ↑', 'Down ↓']
+    # )
     
     epochs = 50
     history = {'loss': [], 'val_loss': []}
